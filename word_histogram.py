@@ -99,7 +99,6 @@ def run(num,outfile):
         if (inp != ""):
             inpq.append(inp)
 
-
     # join threads                                                                                                                                                                                                                                                            
     for k in threads:
         k.join()
