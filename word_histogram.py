@@ -4,6 +4,10 @@ March 2022
 
 Word Histogram is an exploration of the producer-consumer model:
     a classic problem in concurrency. 
+There is one producer thread that takes in a filename, and creates
+    a word histogram for every word in the text file. With this,
+    there are multiple consumer threads that take the values from
+    the histograms and print them concurrently.
 
 """
 
@@ -73,12 +77,11 @@ def print_hist(fname,ipthist,outfile):
 #           creates threads                                                                                                                                                                                                                                                   
 def run(num,outfile):
     inp = ""
-    work_queue = []
-    threads = []
-    inpq = []
-    mutex = Lock()
-    items = Lock()
+    work_queue, threads, inpq = [],[],[]
+    mutex,items = Lock(),Lock()
     ready = []
+    
+    #create producer thread
     p_args = [work_queue,inpq,items, mutex,ready]
     cur = threading.Thread(target=produce,args=p_args)
     threads.append(cur)
@@ -101,10 +104,6 @@ def run(num,outfile):
     # join threads                                                                                                                                                                                                                                                            
     for k in threads:
         k.join()
-
-
-
-
 
 
 #main function: gets number of threads and runs main functionality                                                                                                                                                                                                            
