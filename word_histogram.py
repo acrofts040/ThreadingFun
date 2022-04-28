@@ -11,7 +11,6 @@ There is one producer thread that takes in a filename, and creates
 
 """
 
-
 from PIL import Image
 import sys
 import threading
@@ -123,7 +122,4 @@ def main(args):
 # word_histogram.py [-m max_threads] [-o outfile]                                                                                                                                                                                                                             
 if __name__ == '__main__':
     main(sys.argv)
-
-
-
 
